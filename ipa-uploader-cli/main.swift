@@ -16,41 +16,46 @@ class Main {
     
     func main() {
         printVersion()
-        
-        let argumentStrings = CommandLine.arguments
-        let arguments = argumentsService.processArguments(argumentStrings)
+        let arguments = argumentsService.processArguments(CommandLine.arguments)
         
         guard argumentsService.argumentsValid(arguments),
             let transporterTask = ITMSTransporterTask(arguments: arguments) else {
-            printUsage()
-            return
+                printUsage()
+                return
         }
         
         let fileURLs: [URL] = arguments.compactMap({ argument in
             guard let url = argument.value as? URL, url.isFileURL else { return nil }
             return url
         })
+        
         guard !fileURLs.isEmpty else {
             printUsage()
             return
         }
-    
+        
         // Check all file URLs passed as parameters exist.
+        if allFilesExist(fileURLs: fileURLs) {
+            let slackURL = arguments.first(where: { $0.key == .slackURL })?.value as? URL
+            messagingService = Services.messaging(level: .verbose, options: .all, slackHookURL: slackURL)
+            performUpload(task: transporterTask)
+        }
+    }
+    
+    private func allFilesExist(fileURLs: [URL]) -> Bool {
         let fileManager = FileManager.default
         if let fileURL = fileURLs.first(where: { !fileManager.fileExists(atPath: $0.path) }) {
             messagingService.message("File at \(fileURL.path) doesn't exist.", level: .default)
-            return
+            return false
         }
-        
-        
-        let slackURL = arguments.first(where: { $0.key == .slackURL })?.value as? URL
-        messagingService = Services.messaging(level: .verbose, options: .all, slackHookURL: slackURL)
+        return true
+    }
+    
+    private func performUpload(task uploadTask: Task) {
         messagingService.message("Uploading...", level: .default)
-        
-        if let output = taskService.run(task: transporterTask) {
+        if let output = taskService.run(task: uploadTask) {
             messagingService.message(output, level: .default)
         }
-        
         messagingService.message("done.", level: .default)
         messagingService.flush()
     }
@@ -69,4 +74,3 @@ class Main {
 }
 
 Main().main()
-

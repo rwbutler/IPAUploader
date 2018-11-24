@@ -1,10 +1,11 @@
 ![IPA Uploader](https://github.com/rwbutler/IPAUploader/raw/master/docs/images/ipa-uploader-banner.png)
 
 [![CI Status](http://img.shields.io/travis/rwbutler/ConfigValidator.svg?style=flat)](https://travis-ci.org/rwbutler/IPAUploader)
+[![Maintainability](https://api.codeclimate.com/v1/badges/68758295a60203d6a031/maintainability)](https://codeclimate.com/github/rwbutler/IPAUploader/maintainability)
 [![License](https://img.shields.io/cocoapods/l/TypographyKit.svg?style=flat)](https://github.com/rwbutler/IPAUploader/blob/master/LICENSE)
 ![Platform](https://img.shields.io/badge/platform-macOS-lightgrey.svg)
 
-Uploads your apps to TestFlight & the App Store.
+Uploads your apps to TestFlight & App Store.
 
 For more information on IPA Uploader, take a look at the [keynote presentation](https://github.com/rwbutler/IPAUploader/blob/master/docs/presentations/ipa-uploader.pdf).
 
