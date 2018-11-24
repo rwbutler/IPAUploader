@@ -1,0 +1,849 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		"app-store-uploader::app-store-uploaderPackageTests::ProductTarget" /* ipa-uploaderPackageTests */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = OBJ_31 /* Build configuration list for PBXAggregateTarget "ipa-uploaderPackageTests" */;
+			buildPhases = (
+			);
+			dependencies = (
+				OBJ_34 /* PBXTargetDependency */,
+			);
+			name = "ipa-uploaderPackageTests";
+			productName = "app-store-uploaderPackageTests";
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		133FDF0621A2E72900A157EA /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF0521A2E72900A157EA /* main.swift */; };
+		133FDF0E21A2ED4000A157EA /* CommandLineArgumentsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF0D21A2ED4000A157EA /* CommandLineArgumentsService.swift */; };
+		133FDF1521A3042700A157EA /* CommandLineArgumentsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF0D21A2ED4000A157EA /* CommandLineArgumentsService.swift */; };
+		133FDF1721A3047100A157EA /* ArgumentsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF1621A3047100A157EA /* ArgumentsService.swift */; };
+		133FDF1821A3047B00A157EA /* ArgumentsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF1621A3047100A157EA /* ArgumentsService.swift */; };
+		133FDF1E21A3093600A157EA /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF1D21A3093600A157EA /* Task.swift */; };
+		133FDF2021A309D400A157EA /* DefaultTaskService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF1F21A309D400A157EA /* DefaultTaskService.swift */; };
+		133FDF2121A30B2F00A157EA /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF1D21A3093600A157EA /* Task.swift */; };
+		133FDF2321A30CC500A157EA /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF2221A30CC500A157EA /* Services.swift */; };
+		133FDF2521A30D4A00A157EA /* DefaultTaskService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF1F21A309D400A157EA /* DefaultTaskService.swift */; };
+		133FDF2B21A30E5F00A157EA /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF2221A30CC500A157EA /* Services.swift */; };
+		133FDF2D21A30E8200A157EA /* TaskService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF2C21A30E8200A157EA /* TaskService.swift */; };
+		133FDF2E21A30ECD00A157EA /* TaskService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF2C21A30E8200A157EA /* TaskService.swift */; };
+		133FDF3021A30EE600A157EA /* ITMSTransporterTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF2F21A30EE600A157EA /* ITMSTransporterTask.swift */; };
+		133FDF3121A30EED00A157EA /* ITMSTransporterTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF2F21A30EE600A157EA /* ITMSTransporterTask.swift */; };
+		133FDF3521A3342200A157EA /* Argument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF3421A3342200A157EA /* Argument.swift */; };
+		133FDF3721A3344700A157EA /* Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF3621A3344700A157EA /* Arguments.swift */; };
+		133FDF3821A3346400A157EA /* Argument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF3421A3342200A157EA /* Argument.swift */; };
+		133FDF3921A3346600A157EA /* Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF3621A3344700A157EA /* Arguments.swift */; };
+		133FDF3B21A3347100A157EA /* ArgumentKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF3A21A3347100A157EA /* ArgumentKey.swift */; };
+		133FDF3C21A3349900A157EA /* ArgumentKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF3A21A3347100A157EA /* ArgumentKey.swift */; };
+		133FDF4221A4160A00A157EA /* MessagingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF4121A4160A00A157EA /* MessagingService.swift */; };
+		133FDF4421A417ED00A157EA /* SlackMessagingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF4321A417ED00A157EA /* SlackMessagingService.swift */; };
+		133FDF4621A4186000A157EA /* ConsoleMessagingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF4521A4186000A157EA /* ConsoleMessagingService.swift */; };
+		133FDF4821A418BD00A157EA /* CoordinatedMessagingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF4721A418BD00A157EA /* CoordinatedMessagingService.swift */; };
+		133FDF4A21A4197600A157EA /* MessagingLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF4921A4197600A157EA /* MessagingLevel.swift */; };
+		133FDF4B21A4198200A157EA /* MessagingLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF4921A4197600A157EA /* MessagingLevel.swift */; };
+		133FDF4C21A4198400A157EA /* CoordinatedMessagingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF4721A418BD00A157EA /* CoordinatedMessagingService.swift */; };
+		133FDF4D21A4198600A157EA /* ConsoleMessagingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF4521A4186000A157EA /* ConsoleMessagingService.swift */; };
+		133FDF4E21A4198800A157EA /* SlackMessagingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF4321A417ED00A157EA /* SlackMessagingService.swift */; };
+		133FDF4F21A4198B00A157EA /* MessagingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF4121A4160A00A157EA /* MessagingService.swift */; };
+		133FDF5121A41A5100A157EA /* MessagingOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF5021A41A5100A157EA /* MessagingOptions.swift */; };
+		133FDF5221A41AAF00A157EA /* MessagingOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF5021A41A5100A157EA /* MessagingOptions.swift */; };
+		OBJ_29 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
+		OBJ_40 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* XCTestManifests.swift */; };
+		OBJ_41 /* app_store_uploaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* app_store_uploaderTests.swift */; };
+		OBJ_43 /* app_store_uploader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "app-store-uploader::app-store-uploader::Product" /* app_store_uploader.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		133FDEFD21A2E67800A157EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "app-store-uploader::app-store-uploader";
+			remoteInfo = "app-store-uploader";
+		};
+		133FDEFE21A2E67900A157EA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "app-store-uploader::app-store-uploaderTests";
+			remoteInfo = "app-store-uploaderTests";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		133FDF0121A2E72800A157EA /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		133FDF0321A2E72800A157EA /* ipa-uploader */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "ipa-uploader"; sourceTree = BUILT_PRODUCTS_DIR; };
+		133FDF0521A2E72900A157EA /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		133FDF0D21A2ED4000A157EA /* CommandLineArgumentsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandLineArgumentsService.swift; sourceTree = "<group>"; };
+		133FDF1621A3047100A157EA /* ArgumentsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentsService.swift; sourceTree = "<group>"; };
+		133FDF1D21A3093600A157EA /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		133FDF1F21A309D400A157EA /* DefaultTaskService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultTaskService.swift; sourceTree = "<group>"; };
+		133FDF2221A30CC500A157EA /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
+		133FDF2C21A30E8200A157EA /* TaskService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskService.swift; sourceTree = "<group>"; };
+		133FDF2F21A30EE600A157EA /* ITMSTransporterTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ITMSTransporterTask.swift; sourceTree = "<group>"; };
+		133FDF3421A3342200A157EA /* Argument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Argument.swift; sourceTree = "<group>"; };
+		133FDF3621A3344700A157EA /* Arguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Arguments.swift; sourceTree = "<group>"; };
+		133FDF3A21A3347100A157EA /* ArgumentKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgumentKey.swift; sourceTree = "<group>"; };
+		133FDF4121A4160A00A157EA /* MessagingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingService.swift; sourceTree = "<group>"; };
+		133FDF4321A417ED00A157EA /* SlackMessagingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlackMessagingService.swift; sourceTree = "<group>"; };
+		133FDF4521A4186000A157EA /* ConsoleMessagingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsoleMessagingService.swift; sourceTree = "<group>"; };
+		133FDF4721A418BD00A157EA /* CoordinatedMessagingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatedMessagingService.swift; sourceTree = "<group>"; };
+		133FDF4921A4197600A157EA /* MessagingLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingLevel.swift; sourceTree = "<group>"; };
+		133FDF5021A41A5100A157EA /* MessagingOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingOptions.swift; sourceTree = "<group>"; };
+		OBJ_12 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
+		OBJ_13 /* app_store_uploaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = app_store_uploaderTests.swift; sourceTree = "<group>"; };
+		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		"app-store-uploader::app-store-uploader::Product" /* app_store_uploader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = app_store_uploader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"app-store-uploader::app-store-uploaderTests::Product" /* ipa-uploaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = "ipa-uploaderTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		133FDF0021A2E72800A157EA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_23 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_42 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_43 /* app_store_uploader.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		133FDF0421A2E72900A157EA /* ipa-uploader-cli */ = {
+			isa = PBXGroup;
+			children = (
+				133FDF0521A2E72900A157EA /* main.swift */,
+			);
+			path = "ipa-uploader-cli";
+			sourceTree = "<group>";
+		};
+		133FDF0B21A2ED2900A157EA /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				133FDF0C21A2ED2E00A157EA /* Command Line */,
+				133FDF3D21A415D500A157EA /* Messaging */,
+				133FDF2221A30CC500A157EA /* Services.swift */,
+				133FDF1921A308FC00A157EA /* Task */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		133FDF0C21A2ED2E00A157EA /* Command Line */ = {
+			isa = PBXGroup;
+			children = (
+				133FDF1121A2ED8700A157EA /* Protocol */,
+				133FDF1021A2ED7D00A157EA /* Implementation */,
+				133FDF0F21A2ED7900A157EA /* Model */,
+			);
+			path = "Command Line";
+			sourceTree = "<group>";
+		};
+		133FDF0F21A2ED7900A157EA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				133FDF3421A3342200A157EA /* Argument.swift */,
+				133FDF3621A3344700A157EA /* Arguments.swift */,
+				133FDF3A21A3347100A157EA /* ArgumentKey.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		133FDF1021A2ED7D00A157EA /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				133FDF0D21A2ED4000A157EA /* CommandLineArgumentsService.swift */,
+			);
+			path = Implementation;
+			sourceTree = "<group>";
+		};
+		133FDF1121A2ED8700A157EA /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				133FDF1621A3047100A157EA /* ArgumentsService.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		133FDF1921A308FC00A157EA /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				133FDF1C21A3090F00A157EA /* Model */,
+				133FDF1B21A3090600A157EA /* Implementation */,
+				133FDF1A21A3090000A157EA /* Protocol */,
+			);
+			path = Task;
+			sourceTree = "<group>";
+		};
+		133FDF1A21A3090000A157EA /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				133FDF2C21A30E8200A157EA /* TaskService.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		133FDF1B21A3090600A157EA /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				133FDF1F21A309D400A157EA /* DefaultTaskService.swift */,
+			);
+			path = Implementation;
+			sourceTree = "<group>";
+		};
+		133FDF1C21A3090F00A157EA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				133FDF1D21A3093600A157EA /* Task.swift */,
+				133FDF2F21A30EE600A157EA /* ITMSTransporterTask.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		133FDF2721A30DE700A157EA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		133FDF3D21A415D500A157EA /* Messaging */ = {
+			isa = PBXGroup;
+			children = (
+				133FDF4021A415EF00A157EA /* Model */,
+				133FDF3F21A415EA00A157EA /* Implementation */,
+				133FDF3E21A415E300A157EA /* Protocol */,
+			);
+			path = Messaging;
+			sourceTree = "<group>";
+		};
+		133FDF3E21A415E300A157EA /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				133FDF4121A4160A00A157EA /* MessagingService.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		133FDF3F21A415EA00A157EA /* Implementation */ = {
+			isa = PBXGroup;
+			children = (
+				133FDF4321A417ED00A157EA /* SlackMessagingService.swift */,
+				133FDF4521A4186000A157EA /* ConsoleMessagingService.swift */,
+				133FDF4721A418BD00A157EA /* CoordinatedMessagingService.swift */,
+			);
+			path = Implementation;
+			sourceTree = "<group>";
+		};
+		133FDF4021A415EF00A157EA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				133FDF4921A4197600A157EA /* MessagingLevel.swift */,
+				133FDF5021A41A5100A157EA /* MessagingOptions.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		OBJ_10 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_11 /* app-store-uploaderTests */,
+			);
+			name = Tests;
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_11 /* app-store-uploaderTests */ = {
+			isa = PBXGroup;
+			children = (
+				OBJ_12 /* XCTestManifests.swift */,
+				OBJ_13 /* app_store_uploaderTests.swift */,
+			);
+			name = "app-store-uploaderTests";
+			path = "Tests/app-store-uploaderTests";
+			sourceTree = SOURCE_ROOT;
+		};
+		OBJ_14 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				"app-store-uploader::app-store-uploaderTests::Product" /* ipa-uploaderTests.xctest */,
+				"app-store-uploader::app-store-uploader::Product" /* app_store_uploader.framework */,
+				133FDF0321A2E72800A157EA /* ipa-uploader */,
+			);
+			name = Products;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		OBJ_5 = {
+			isa = PBXGroup;
+			children = (
+				OBJ_6 /* Package.swift */,
+				OBJ_7 /* Sources */,
+				OBJ_10 /* Tests */,
+				133FDF0421A2E72900A157EA /* ipa-uploader-cli */,
+				OBJ_14 /* Products */,
+				133FDF2721A30DE700A157EA /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		OBJ_7 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				133FDF0B21A2ED2900A157EA /* Services */,
+			);
+			name = Sources;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		133FDF0221A2E72800A157EA /* ipa-uploader-cli */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 133FDF0921A2E72900A157EA /* Build configuration list for PBXNativeTarget "ipa-uploader-cli" */;
+			buildPhases = (
+				133FDEFF21A2E72800A157EA /* Sources */,
+				133FDF0021A2E72800A157EA /* Frameworks */,
+				133FDF0121A2E72800A157EA /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ipa-uploader-cli";
+			productName = "app-store-uploader-cli";
+			productReference = 133FDF0321A2E72800A157EA /* ipa-uploader */;
+			productType = "com.apple.product-type.tool";
+		};
+		"app-store-uploader::SwiftPMPackageDescription" /* ipa-uploaderPackageDescription */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_25 /* Build configuration list for PBXNativeTarget "ipa-uploaderPackageDescription" */;
+			buildPhases = (
+				OBJ_28 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ipa-uploaderPackageDescription";
+			productName = "app-store-uploaderPackageDescription";
+			productType = "com.apple.product-type.framework";
+		};
+		"app-store-uploader::app-store-uploader" /* ipa-uploader */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_18 /* Build configuration list for PBXNativeTarget "ipa-uploader" */;
+			buildPhases = (
+				OBJ_21 /* Sources */,
+				OBJ_23 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ipa-uploader";
+			productName = app_store_uploader;
+			productReference = "app-store-uploader::app-store-uploader::Product" /* app_store_uploader.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"app-store-uploader::app-store-uploaderTests" /* ipa-uploaderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = OBJ_36 /* Build configuration list for PBXNativeTarget "ipa-uploaderTests" */;
+			buildPhases = (
+				OBJ_39 /* Sources */,
+				OBJ_42 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				OBJ_44 /* PBXTargetDependency */,
+			);
+			name = "ipa-uploaderTests";
+			productName = app_store_uploaderTests;
+			productReference = "app-store-uploader::app-store-uploaderTests::Product" /* ipa-uploaderTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		OBJ_1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 9999;
+				TargetAttributes = {
+					133FDF0221A2E72800A157EA = {
+						CreatedOnToolsVersion = 10.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = OBJ_2 /* Build configuration list for PBXProject "ipa-uploader" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = OBJ_5;
+			productRefGroup = OBJ_14 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				"app-store-uploader::app-store-uploader" /* ipa-uploader */,
+				"app-store-uploader::SwiftPMPackageDescription" /* ipa-uploaderPackageDescription */,
+				"app-store-uploader::app-store-uploaderPackageTests::ProductTarget" /* ipa-uploaderPackageTests */,
+				"app-store-uploader::app-store-uploaderTests" /* ipa-uploaderTests */,
+				133FDF0221A2E72800A157EA /* ipa-uploader-cli */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		133FDEFF21A2E72800A157EA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				133FDF4F21A4198B00A157EA /* MessagingService.swift in Sources */,
+				133FDF2E21A30ECD00A157EA /* TaskService.swift in Sources */,
+				133FDF1821A3047B00A157EA /* ArgumentsService.swift in Sources */,
+				133FDF4E21A4198800A157EA /* SlackMessagingService.swift in Sources */,
+				133FDF1521A3042700A157EA /* CommandLineArgumentsService.swift in Sources */,
+				133FDF2521A30D4A00A157EA /* DefaultTaskService.swift in Sources */,
+				133FDF5221A41AAF00A157EA /* MessagingOptions.swift in Sources */,
+				133FDF2B21A30E5F00A157EA /* Services.swift in Sources */,
+				133FDF4C21A4198400A157EA /* CoordinatedMessagingService.swift in Sources */,
+				133FDF4B21A4198200A157EA /* MessagingLevel.swift in Sources */,
+				133FDF3121A30EED00A157EA /* ITMSTransporterTask.swift in Sources */,
+				133FDF2121A30B2F00A157EA /* Task.swift in Sources */,
+				133FDF3C21A3349900A157EA /* ArgumentKey.swift in Sources */,
+				133FDF3821A3346400A157EA /* Argument.swift in Sources */,
+				133FDF0621A2E72900A157EA /* main.swift in Sources */,
+				133FDF4D21A4198600A157EA /* ConsoleMessagingService.swift in Sources */,
+				133FDF3921A3346600A157EA /* Arguments.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_21 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				133FDF4221A4160A00A157EA /* MessagingService.swift in Sources */,
+				133FDF2D21A30E8200A157EA /* TaskService.swift in Sources */,
+				133FDF2021A309D400A157EA /* DefaultTaskService.swift in Sources */,
+				133FDF4421A417ED00A157EA /* SlackMessagingService.swift in Sources */,
+				133FDF1721A3047100A157EA /* ArgumentsService.swift in Sources */,
+				133FDF4A21A4197600A157EA /* MessagingLevel.swift in Sources */,
+				133FDF5121A41A5100A157EA /* MessagingOptions.swift in Sources */,
+				133FDF0E21A2ED4000A157EA /* CommandLineArgumentsService.swift in Sources */,
+				133FDF3B21A3347100A157EA /* ArgumentKey.swift in Sources */,
+				133FDF2321A30CC500A157EA /* Services.swift in Sources */,
+				133FDF3021A30EE600A157EA /* ITMSTransporterTask.swift in Sources */,
+				133FDF1E21A3093600A157EA /* Task.swift in Sources */,
+				133FDF3521A3342200A157EA /* Argument.swift in Sources */,
+				133FDF4621A4186000A157EA /* ConsoleMessagingService.swift in Sources */,
+				133FDF4821A418BD00A157EA /* CoordinatedMessagingService.swift in Sources */,
+				133FDF3721A3344700A157EA /* Arguments.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_28 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_29 /* Package.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		OBJ_39 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				OBJ_40 /* XCTestManifests.swift in Sources */,
+				OBJ_41 /* app_store_uploaderTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		OBJ_34 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "app-store-uploader::app-store-uploaderTests" /* ipa-uploaderTests */;
+			targetProxy = 133FDEFE21A2E67900A157EA /* PBXContainerItemProxy */;
+		};
+		OBJ_44 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "app-store-uploader::app-store-uploader" /* ipa-uploader */;
+			targetProxy = 133FDEFD21A2E67800A157EA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		133FDF0721A2E72900A157EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "ipa-uploader";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		133FDF0821A2E72900A157EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "ipa-uploader";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+		OBJ_19 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "app-store-uploader.xcodeproj/app_store_uploader_Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "app-store-uploader";
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = "app-store-uploader";
+			};
+			name = Debug;
+		};
+		OBJ_20 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "app-store-uploader.xcodeproj/app_store_uploader_Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "app-store-uploader";
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = "app-store-uploader";
+			};
+			name = Release;
+		};
+		OBJ_26 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4.2 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
+				PRODUCT_NAME = "ipa-uploaderPackageDescription";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		OBJ_27 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LD = /usr/bin/true;
+				OTHER_SWIFT_FLAGS = "-swift-version 4.2 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
+				PRODUCT_NAME = "ipa-uploaderPackageDescription";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+		OBJ_3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "SWIFT_PACKAGE DEBUG";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				USE_HEADERMAP = NO;
+			};
+			name = Debug;
+		};
+		OBJ_32 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "ipa-uploaderPackageTests";
+			};
+			name = Debug;
+		};
+		OBJ_33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "ipa-uploaderPackageTests";
+			};
+			name = Release;
+		};
+		OBJ_37 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "app-store-uploader.xcodeproj/app_store_uploaderTests_Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_NAME = "ipa-uploaderTests";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = "app-store-uploaderTests";
+			};
+			name = Debug;
+		};
+		OBJ_38 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = "app-store-uploader.xcodeproj/app_store_uploaderTests_Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
+				OTHER_CFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_NAME = "ipa-uploaderTests";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
+				SWIFT_VERSION = 4.2;
+				TARGET_NAME = "app-store-uploaderTests";
+			};
+			name = Release;
+		};
+		OBJ_4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_OPTIMIZATION_LEVEL = s;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_SWIFT_FLAGS = "-DXcode";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = SWIFT_PACKAGE;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				USE_HEADERMAP = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		133FDF0921A2E72900A157EA /* Build configuration list for PBXNativeTarget "ipa-uploader-cli" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				133FDF0721A2E72900A157EA /* Debug */,
+				133FDF0821A2E72900A157EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_18 /* Build configuration list for PBXNativeTarget "ipa-uploader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_19 /* Debug */,
+				OBJ_20 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_2 /* Build configuration list for PBXProject "ipa-uploader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_3 /* Debug */,
+				OBJ_4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_25 /* Build configuration list for PBXNativeTarget "ipa-uploaderPackageDescription" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_26 /* Debug */,
+				OBJ_27 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_31 /* Build configuration list for PBXAggregateTarget "ipa-uploaderPackageTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_32 /* Debug */,
+				OBJ_33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		OBJ_36 /* Build configuration list for PBXNativeTarget "ipa-uploaderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				OBJ_37 /* Debug */,
+				OBJ_38 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = OBJ_1 /* Project object */;
+}
