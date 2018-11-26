@@ -14,6 +14,7 @@ enum ArgumentKey: String, RawRepresentable, CustomStringConvertible, CaseIterabl
     case username = "--username"
     case password = "--password"
     case slackURL = "--slack-url"
+    case timeout = "--timeout"
     
     init?(rawValue: String) {
         
@@ -50,6 +51,10 @@ enum ArgumentKey: String, RawRepresentable, CustomStringConvertible, CaseIterabl
             if let url = URL(string: value) {
                 return Argument(key: self, value: url as Any)
             }
+        case .timeout:
+            if let timeout = Double(value) {
+                return Argument(key: self, value: timeout as Any)
+            }
         }
         return nil
     }
@@ -64,6 +69,8 @@ enum ArgumentKey: String, RawRepresentable, CustomStringConvertible, CaseIterabl
             return "The password of the Apple ID to upload the IPA as."
         case .slackURL:
             return "[Optional] The hook URL for posting to Slack."
+        case .timeout:
+            return "[Optional] A timeout specified in seconds to wait on the upload."
         case .username:
             return "The username of the Apple ID to upload the IPA as."
         }
@@ -79,6 +86,8 @@ enum ArgumentKey: String, RawRepresentable, CustomStringConvertible, CaseIterabl
             return ["-p", "-pass"]
         case .slackURL:
             return ["-s", "-slack"]
+        case .timeout:
+            return ["-time", "-wait"]
         case .username:
             return ["-u", "-user"]
         }

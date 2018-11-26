@@ -11,11 +11,13 @@ struct ITMSTransporterTask: Task {
     private static let defaultPath = URL(fileURLWithPath: "/Applications/Xcode.app/Contents/Applications/Application Loader.app/Contents/itms/bin/iTMSTransporter")
     let arguments: [String]?
     let processURL: URL
+    let timeoutInSeconds: Double?
     let workingDirectoryURL: URL?
     
-    init(ipaPath: URL, itmsTransporterPath: URL = defaultPath, username: String, password: String) {
+    init(ipaPath: URL, itmsTransporterPath: URL = defaultPath, username: String, password: String, timeoutInSeconds: Double? = nil) {
         self.arguments = ["-m", "upload", "-assetFile", "\(ipaPath.path)", "-u", "\(username)", "-p", "\(password)"]
         self.processURL = itmsTransporterPath
+        self.timeoutInSeconds = timeoutInSeconds
         self.workingDirectoryURL = nil
     }
     
@@ -27,7 +29,8 @@ struct ITMSTransporterTask: Task {
             let password = arguments.first(where: { $0.key == .password })?.value as? String else {
             return nil
         }
-        self.init(ipaPath: ipaPath, itmsTransporterPath: itmsTransporterPath, username: username, password: password)
+        let timeout = arguments.first(where: { $0.key == .timeout })?.value as? Double
+        self.init(ipaPath: ipaPath, itmsTransporterPath: itmsTransporterPath, username: username, password: password, timeoutInSeconds: timeout)
     }
     
 }

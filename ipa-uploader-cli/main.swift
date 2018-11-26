@@ -12,7 +12,7 @@ class Main {
     private let argumentsService = Services.commandLine
     private var messagingService = Services.messaging()
     private let taskService = Services.task
-    private let version: String = "0.0.1"
+    private let version: String = "0.0.2"
     
     func main() {
         printVersion()

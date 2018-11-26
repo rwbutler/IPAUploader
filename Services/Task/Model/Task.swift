@@ -10,5 +10,6 @@ import Foundation
 protocol Task {
     var arguments: [String]? { get }
     var processURL: URL { get }
+    var timeoutInSeconds: Double? { get }
     var workingDirectoryURL: URL? { get }
 }

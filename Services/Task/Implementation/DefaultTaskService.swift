@@ -8,6 +8,7 @@
 import Foundation
 
 struct DefaultTaskService: TaskService {
+    private let queue = DispatchQueue(label: "timeout", qos: .background)
     
     /// Executes the specified task and return the output, if any
     func run(task: Task) -> String? {
@@ -29,6 +30,12 @@ struct DefaultTaskService: TaskService {
         }
         do {
             dispatchGroup.enter()
+            if let timeout = task.timeoutInSeconds {
+                let deadline = DispatchTime.now() + timeout
+                queue.asyncAfter(deadline: deadline, execute: {
+                    process.terminate()
+                })
+            }
             try process.run()
             dispatchGroup.wait()
             let processData = pipeReader.readDataToEndOfFile()
