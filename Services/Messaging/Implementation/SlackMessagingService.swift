@@ -114,23 +114,32 @@ private extension SlackMessagingService {
         let request = urlRequest(url: hookURL, message: message)
         let task = URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
             guard let data = data, error == nil else {
-                if let errorDescription = error?.localizedDescription {
-                    self?.consoleMessagingService.message(errorDescription, level: .warn)
-                }
+                self?.sendErrorMessage(error: error)
                 completion()
                 return
             }
-            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
-                let statusCode = httpStatus.statusCode
-                let fullResponse = String(describing: response)
-                self?.consoleMessagingService.message("Returned non-200 status code: \(statusCode)\n with response: \(fullResponse)", level: .warn)
-                if let responseString = String(data: data, encoding: .utf8) {
-                    self?.consoleMessagingService.message(responseString)
-                }
-            }
+            self?.sendResponseMessage(response: response, body: data)
             completion()
         }
         task.resume()
+    }
+    
+    private func sendErrorMessage(error: Error?) {
+        if let errorDescription = error?.localizedDescription {
+            consoleMessagingService.message(errorDescription, level: .warn)
+        }
+    }
+    
+    /// Reports an error when response is return with a non-200 HTTP status code.
+    private func sendResponseMessage(response: URLResponse?, body: Data) {
+        if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+            let statusCode = httpStatus.statusCode
+            let fullResponse = String(describing: response)
+            consoleMessagingService.message("Returned non-200 status code: \(statusCode)\n with response: \(fullResponse)", level: .warn)
+            if let responseString = String(data: body, encoding: .utf8) {
+                consoleMessagingService.message(responseString)
+            }
+        }
     }
     
     private func urlRequest(url: URL, message: String) -> URLRequest {

@@ -42,10 +42,7 @@ struct DefaultTaskService: TaskService {
             try process.run()
             dispatchGroup.wait()
             let processData = pipeReader.readDataToEndOfFile()
-            guard let processOutput = String(data: processData, encoding: .utf8) else {
-                pipeReader.closeFile()
-                return nil
-            }
+            let processOutput = String(data: processData, encoding: .utf8)
             pipeReader.closeFile()
             return processOutput
         } catch _ {
