@@ -10,11 +10,8 @@ import Foundation
 struct DefaultTaskService: TaskService {
     private let queue = DispatchQueue(label: "timeout", qos: .background)
     
-    /// Executes the specified task and return the output, if any
-    func run(task: Task) -> String? {
-        let dispatchGroup = DispatchGroup()
-        let pipe = Pipe()
-        let pipeReader = pipe.fileHandleForReading
+    /// Returns a Process configured using settings from the Task model object.
+    private func process(from task: Task) -> Process {
         let process = Process()
         if let arguments = task.arguments {
             process.arguments = arguments
@@ -23,6 +20,15 @@ struct DefaultTaskService: TaskService {
             process.currentDirectoryURL = workingDirectoryURL
         }
         process.executableURL = task.processURL
+        return process
+    }
+    
+    /// Executes the specified task and return the output, if any
+    func run(task: Task) -> String? {
+        let dispatchGroup = DispatchGroup()
+        let pipe = Pipe()
+        let pipeReader = pipe.fileHandleForReading
+        let process = self.process(from: task)
         process.standardOutput = pipe
         process.standardError = pipe
         process.terminationHandler = { (process) in
@@ -31,10 +37,7 @@ struct DefaultTaskService: TaskService {
         do {
             dispatchGroup.enter()
             if let timeout = task.timeoutInSeconds {
-                let deadline = DispatchTime.now() + timeout
-                queue.asyncAfter(deadline: deadline, execute: {
-                    process.terminate()
-                })
+                startTimeoutTimer(timeoutInSeconds: timeout, process: process)
             }
             try process.run()
             dispatchGroup.wait()
@@ -48,6 +51,13 @@ struct DefaultTaskService: TaskService {
         } catch _ {
             return nil
         }
+    }
+    
+    private func startTimeoutTimer(timeoutInSeconds: Double, process: Process) {
+        let deadline = DispatchTime.now() + timeoutInSeconds
+        queue.asyncAfter(deadline: deadline, execute: {
+            process.terminate()
+        })
     }
     
 }

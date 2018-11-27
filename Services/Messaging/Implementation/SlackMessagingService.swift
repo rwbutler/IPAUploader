@@ -76,26 +76,42 @@ private extension SlackMessagingService {
         return timer
     }
     
-    func sendBufferedMessage(_ completion: (() -> Void)? = nil) {
+    func formattedMessage(messages: [String]) -> String {
+        let message = messages.joined(separator: "\n")
+            .replacingOccurrences(of: "\"", with: "") // Strip double quotes
+        return "\(applicationName()): \(message)\n"
+    }
+    
+    func bufferEmpty() -> Bool {
+        return simpleBuffer.isEmpty
+    }
+    
+    func bufferedMessagesWithCompletion() -> [MessageWithCompletion] {
         let copiedBuffer = simpleBuffer
         simpleBuffer.removeAll()
-        
+        return copiedBuffer
+    }
+    
+    func bufferedMessages(_ messages: [MessageWithCompletion]) -> [String] {
+        return messages.map({ $0.0 })
+    }
+    
+    func completionClosures(_ messages: [MessageWithCompletion]) -> [() -> Void] {
+        return messages.compactMap({ $0.1 })
+    }
+    
+    func sendBufferedMessage(_ completion: (() -> Void)? = nil) {
         // Ensure that there are buffered messages to be sent.
-        guard !copiedBuffer.isEmpty else { completion?(); return }
+        guard !bufferEmpty() else { completion?(); return }
         
-        let message = copiedBuffer.map({ $0.0 }).joined(separator: "\n")
-            .replacingOccurrences(of: "\"", with: "") // Strip double quotes
+        let messagesWithCompletion: [MessageWithCompletion] = bufferedMessagesWithCompletion()
+        let completions = completionClosures(messagesWithCompletion)
+        let message = formattedMessage(messages: bufferedMessages(messagesWithCompletion))
         let completion: () -> Void = {
-            copiedBuffer.forEach({ (_, completion) in
-                completion?()
-            })
+            completions.forEach({ $0() })
             completion?()
         }
-        let formattedMessage = "\(applicationName()): \(message)\n"
-        var request = URLRequest(url: hookURL)
-        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "POST"
-        request.httpBody = "payload={\"text\": \"\(formattedMessage)\"}".data(using: .utf8)
+        let request = urlRequest(url: hookURL, message: message)
         let task = URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
             guard let data = data, error == nil else {
                 if let errorDescription = error?.localizedDescription {
@@ -117,5 +133,13 @@ private extension SlackMessagingService {
         task.resume()
     }
     
+    private func urlRequest(url: URL, message: String) -> URLRequest {
+        var request = URLRequest(url: url)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        request.httpBody = "payload={\"text\": \"\(message)\"}".data(using: .utf8)
+        return request
+    }
+
 }
 

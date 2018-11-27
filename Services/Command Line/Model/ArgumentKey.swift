@@ -36,27 +36,32 @@ enum ArgumentKey: String, RawRepresentable, CustomStringConvertible, CaseIterabl
     }
     
     func argument(value: String) -> Argument<Any>? {
+        let result: Argument<Any>?
         switch self {
         case .ipaPath:
             let url = URL(fileURLWithPath: value)
-            return Argument(key: self, value: url as Any)
+            result = Argument(key: self, value: url as Any)
         case .itmsTransporterPath:
             let url = URL(fileURLWithPath: value)
-            return Argument(key: self, value: url as Any)
+            result = Argument(key: self, value: url as Any)
         case .username:
-            return Argument(key: self, value: value)
+            result = Argument(key: self, value: value)
         case .password:
-            return Argument(key: self, value: value)
+            result = Argument(key: self, value: value)
         case .slackURL:
             if let url = URL(string: value) {
-                return Argument(key: self, value: url as Any)
+                result = Argument(key: self, value: url as Any)
+            } else {
+                result = nil
             }
         case .timeout:
             if let timeout = Double(value) {
-                return Argument(key: self, value: timeout as Any)
+                result = Argument(key: self, value: timeout as Any)
+            } else {
+                result = nil
             }
         }
-        return nil
+        return result
     }
     
     func extendedDescription() -> String {
