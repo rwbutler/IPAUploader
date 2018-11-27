@@ -35,6 +35,20 @@ enum ArgumentKey: String, RawRepresentable, CustomStringConvertible, CaseIterabl
         return self.rawValue
     }
     
+    func argument(doubleString: String) -> Argument<Any>? {
+        if let timeout = Double(doubleString) {
+            return Argument(key: self, value: timeout as Any)
+        }
+        return nil
+    }
+    
+    func argument(urlString: String) -> Argument<Any>? {
+        if let url = URL(string: urlString) {
+            return Argument(key: self, value: url as Any)
+        }
+        return nil
+    }
+    
     func argument(value: String) -> Argument<Any>? {
         let result: Argument<Any>?
         switch self {
@@ -49,17 +63,9 @@ enum ArgumentKey: String, RawRepresentable, CustomStringConvertible, CaseIterabl
         case .password:
             result = Argument(key: self, value: value)
         case .slackURL:
-            if let url = URL(string: value) {
-                result = Argument(key: self, value: url as Any)
-            } else {
-                result = nil
-            }
+            result = argument(urlString: value)
         case .timeout:
-            if let timeout = Double(value) {
-                result = Argument(key: self, value: timeout as Any)
-            } else {
-                result = nil
-            }
+            result = argument(doubleString: value)
         }
         return result
     }
@@ -97,5 +103,5 @@ enum ArgumentKey: String, RawRepresentable, CustomStringConvertible, CaseIterabl
             return ["-u", "-user"]
         }
     }
-    
+
 }
