@@ -20,6 +20,17 @@ brew tap rwbutler/tools
 brew install ipa-uploader
 ```
 
+# Usage
+
+The IPA Uploader tool is invoked as follows:
+
+* `--ipa-path`: The path to the IPA to be uploaded.
+* `--itms-transporter-path`: [Optional] The path to ITMSTransporter for uploading.
+* `--username`: The username of the Apple ID to upload the IPA as.
+* `--password`: The password of the Apple ID to upload the IPA as.
+* `--slack-url`: [Optional] The hook URL for posting to Slack.
+* `--timeout`: [Optional] A timeout specified in seconds to wait on the upload.
+
 ## Additional Software
 
 ### Frameworks
