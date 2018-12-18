@@ -9,6 +9,17 @@ Uploads your apps to TestFlight & App Store.
 
 For more information on IPA Uploader, take a look at the [keynote presentation](https://github.com/rwbutler/IPAUploader/blob/master/docs/presentations/ipa-uploader.pdf).
 
+# Installation
+
+## Homebrew
+
+To install using [Homebrew](https://brew.sh/):
+
+```
+brew tap rwbutler/tools
+brew install ipa-uploader
+```
+
 ## Additional Software
 
 ### Frameworks
