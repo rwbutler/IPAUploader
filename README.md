@@ -4,6 +4,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/68758295a60203d6a031/maintainability)](https://codeclimate.com/github/rwbutler/IPAUploader/maintainability)
 [![License](https://img.shields.io/cocoapods/l/TypographyKit.svg?style=flat)](https://github.com/rwbutler/IPAUploader/blob/master/LICENSE)
 ![Platform](https://img.shields.io/badge/platform-macOS-lightgrey.svg)
+[![Swift 4.2](https://img.shields.io/badge/Swift-4.2-orange.svg?style=flat)](https://swift.org/)
 
 Uploads your apps to TestFlight & App Store.
 
