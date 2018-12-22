@@ -16,7 +16,7 @@ For more information on IPA Uploader, take a look at the [keynote presentation](
 
 To install using [Homebrew](https://brew.sh/):
 
-```
+```bash
 brew tap rwbutler/tools
 brew install ipa-uploader
 ```
