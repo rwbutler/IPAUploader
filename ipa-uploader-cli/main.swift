@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 class Main {
     private let argumentsService = Services.commandLine
     private var messagingService = Services.messaging()

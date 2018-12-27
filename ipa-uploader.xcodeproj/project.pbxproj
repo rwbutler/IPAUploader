@@ -56,7 +56,7 @@
 		133FDF5221A41AAF00A157EA /* MessagingOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133FDF5021A41A5100A157EA /* MessagingOptions.swift */; };
 		OBJ_29 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_40 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* XCTestManifests.swift */; };
-		OBJ_41 /* app_store_uploaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* app_store_uploaderTests.swift */; };
+		OBJ_41 /* IPAUploaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* IPAUploaderTests.swift */; };
 		OBJ_43 /* app_store_uploader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "app-store-uploader::app-store-uploader::Product" /* app_store_uploader.framework */; };
 /* End PBXBuildFile section */
 
@@ -109,7 +109,7 @@
 		133FDF4921A4197600A157EA /* MessagingLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingLevel.swift; sourceTree = "<group>"; };
 		133FDF5021A41A5100A157EA /* MessagingOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingOptions.swift; sourceTree = "<group>"; };
 		OBJ_12 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
-		OBJ_13 /* app_store_uploaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = app_store_uploaderTests.swift; sourceTree = "<group>"; };
+		OBJ_13 /* IPAUploaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPAUploaderTests.swift; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		"app-store-uploader::app-store-uploader::Product" /* app_store_uploader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = app_store_uploader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"app-store-uploader::app-store-uploaderTests::Product" /* ipa-uploaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = "ipa-uploaderTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -287,7 +287,7 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_12 /* XCTestManifests.swift */,
-				OBJ_13 /* app_store_uploaderTests.swift */,
+				OBJ_13 /* IPAUploaderTests.swift */,
 			);
 			name = "app-store-uploaderTests";
 			path = "Tests/app-store-uploaderTests";
@@ -333,6 +333,7 @@
 				133FDEFF21A2E72800A157EA /* Sources */,
 				133FDF0021A2E72800A157EA /* Frameworks */,
 				133FDF0121A2E72800A157EA /* CopyFiles */,
+				13DFA50221D55A1C00CD9AEA /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -426,6 +427,27 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		13DFA50221D55A1C00CD9AEA /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "pwd\n\nif which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		133FDEFF21A2E72800A157EA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -487,7 +509,7 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_40 /* XCTestManifests.swift in Sources */,
-				OBJ_41 /* app_store_uploaderTests.swift in Sources */,
+				OBJ_41 /* IPAUploaderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

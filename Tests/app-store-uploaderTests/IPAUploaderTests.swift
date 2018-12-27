@@ -1,7 +1,7 @@
 import XCTest
 @testable import app_store_uploader
 
-final class app_store_uploaderTests: XCTestCase {
+final class IPAUploaderTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
@@ -10,6 +10,6 @@ final class app_store_uploaderTests: XCTestCase {
     }
 
     static var allTests = [
-        ("testExample", testExample),
+        ("testExample", testExample)
     ]
 }

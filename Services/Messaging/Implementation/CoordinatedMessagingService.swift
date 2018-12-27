@@ -23,7 +23,8 @@ class CoordinatedMessagingService: MessagingService {
             services.append(consoleMessagingService)
         }
         if options.contains(.slack), let hookURL = slackHookURL {
-            services.append(SlackMessagingService(consoleMessagingService: consoleMessagingService, hookURL: hookURL, level: level))
+            services.append(SlackMessagingService(consoleMessagingService: consoleMessagingService,
+                                                  hookURL: hookURL, level: level))
         }
         self.messagingServices = services
     }

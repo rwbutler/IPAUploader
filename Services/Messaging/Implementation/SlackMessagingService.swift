@@ -67,7 +67,7 @@ private extension SlackMessagingService {
         let timer = DispatchSource.makeTimerSource(queue: queue)
         let repeatInterval = DispatchTimeInterval.seconds(2)
         let deadline: DispatchTime = (DispatchTime.now() + repeatInterval)
-        timer.schedule(deadline: deadline, repeating:repeatInterval)
+        timer.schedule(deadline: deadline, repeating: repeatInterval)
         timer.setEventHandler { [weak self] in
             if let unwrapped = self {
                 unwrapped.sendBufferedMessage()
@@ -135,7 +135,8 @@ private extension SlackMessagingService {
         if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
             let statusCode = httpStatus.statusCode
             let fullResponse = String(describing: response)
-            consoleMessagingService.message("Returned non-200 status code: \(statusCode)\n with response: \(fullResponse)", level: .warn)
+            let message = "Returned non-200 status code: \(statusCode)\n with response: \(fullResponse)"
+            consoleMessagingService.message(message, level: .warn)
             if let responseString = String(data: body, encoding: .utf8) {
                 consoleMessagingService.message(responseString)
             }
@@ -151,4 +152,3 @@ private extension SlackMessagingService {
     }
 
 }
-

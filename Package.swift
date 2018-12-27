@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "ipa-uploader",
     products: [
-        .executable(name: "ipa-uploader", targets: ["ipa-uploader-cli"]),
+        .executable(name: "ipa-uploader", targets: ["ipa-uploader-cli"])
     ],
     dependencies: [
     ],
