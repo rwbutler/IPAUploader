@@ -11,5 +11,5 @@ struct Argument<T> {
     typealias Key = ArgumentKey
     
     let key: Key
-    let value: T
+    let value: T?
 }

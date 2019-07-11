@@ -4,7 +4,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/68758295a60203d6a031/maintainability)](https://codeclimate.com/github/rwbutler/IPAUploader/maintainability)
 [![License](https://img.shields.io/cocoapods/l/TypographyKit.svg?style=flat)](https://github.com/rwbutler/IPAUploader/blob/master/LICENSE)
 ![Platform](https://img.shields.io/badge/platform-macOS-lightgrey.svg)
-[![Swift 4.2](https://img.shields.io/badge/Swift-4.2-orange.svg?style=flat)](https://swift.org/)
+[![Swift 5.0](https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat)](https://swift.org/)
 
 Uploads your apps to TestFlight & App Store.
 
@@ -36,6 +36,7 @@ The IPA Uploader tool is invoked as follows:
 * `--password`: The app-specific password to use when uploading the IPA (see below).
 * `--slack-url`: [Optional] The hook URL for posting to Slack.
 * `--timeout`: [Optional] A timeout specified in seconds to wait on the upload.
+* `--verbose`: [Optional] Emits more detailed output.
 
 ## App-Specific Passwords
 

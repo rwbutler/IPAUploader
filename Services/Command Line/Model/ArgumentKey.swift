@@ -15,6 +15,7 @@ enum ArgumentKey: String, RawRepresentable, CustomStringConvertible, CaseIterabl
     case password = "--password"
     case slackURL = "--slack-url"
     case timeout = "--timeout"
+    case verbose = "--verbose"
     
     init?(rawValue: String) {
         
@@ -66,6 +67,8 @@ enum ArgumentKey: String, RawRepresentable, CustomStringConvertible, CaseIterabl
             result = argument(urlString: value)
         case .timeout:
             result = argument(doubleString: value)
+        case .verbose:
+            result = Argument(key: self, value: nil)
         }
         return result
     }
@@ -84,6 +87,8 @@ enum ArgumentKey: String, RawRepresentable, CustomStringConvertible, CaseIterabl
             return "[Optional] A timeout specified in seconds to wait on the upload."
         case .username:
             return "The username of the Apple ID to upload the IPA as."
+        case .verbose:
+             return "[Optional] Whether to emit extended output."
         }
     }
     
@@ -101,6 +106,8 @@ enum ArgumentKey: String, RawRepresentable, CustomStringConvertible, CaseIterabl
             return ["-time", "-wait"]
         case .username:
             return ["-u", "-user"]
+        case .verbose:
+            return ["-v"]
         }
     }
 

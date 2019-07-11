@@ -11,16 +11,16 @@ class Main {
     private let argumentsService = Services.commandLine
     private var messagingService = Services.messaging()
     private let taskService = Services.task
-    private let version: String = "0.0.2"
+    private let version: String = "1.0.0"
     
-    func main() {
+    func main() -> ReturnCode {
         printVersion()
         let arguments = argumentsService.processArguments(CommandLine.arguments)
         
         guard argumentsService.argumentsValid(arguments),
             let transporterTask = ITMSTransporterTask(arguments: arguments) else {
                 printUsage()
-                return
+                return ReturnCode.invalidArguments
         }
         
         let fileURLs: [URL] = arguments.compactMap({ argument in
@@ -30,15 +30,18 @@ class Main {
         
         guard !fileURLs.isEmpty else {
             printUsage()
-            return
+            return ReturnCode.fileURLNotSpecified
         }
         
         // Check all file URLs passed as parameters exist.
-        if allFilesExist(fileURLs: fileURLs) {
-            let slackURL = arguments.first(where: { $0.key == .slackURL })?.value as? URL
-            messagingService = Services.messaging(level: .verbose, options: .all, slackHookURL: slackURL)
-            performUpload(task: transporterTask)
+        guard allFilesExist(fileURLs: fileURLs) else {
+            return ReturnCode.fileDoesNotExist
         }
+        let slackURL = arguments.first(where: { $0.key == .slackURL })?.value as? URL
+        let verboseOutput: Bool = arguments.contains(where: { $0.key == .verbose })
+        let messagingLevel: MessagingLevel = verboseOutput ? .verbose : .default
+        messagingService = Services.messaging(level: messagingLevel, options: .all, slackHookURL: slackURL)
+        return performUpload(task: transporterTask, verboseOutput: verboseOutput)
     }
     
     private func allFilesExist(fileURLs: [URL]) -> Bool {
@@ -50,13 +53,26 @@ class Main {
         return true
     }
     
-    private func performUpload(task uploadTask: Task) {
-        messagingService.message("Uploading...", level: .default)
+    private func performUpload(task uploadTask: Task, verboseOutput: Bool = false) -> ReturnCode {
+        var returnCode: ReturnCode = ReturnCode.itmsTransporterDidNotComplete
+        messagingService.message("Uploading... ☁", level: .default)
         if let output = taskService.run(task: uploadTask) {
-            messagingService.message(output, level: .default)
+            if output.lowercased().contains("error itms") {
+                returnCode = ReturnCode.uploadFailed
+            }
+            if output.lowercased().contains("uploaded successfully") {
+                returnCode = ReturnCode.success
+            }
+            if verboseOutput {
+                messagingService.message(output, level: .default)
+            }
         }
-        messagingService.message("done.", level: .default)
+        let successMessage = "Uploaded succesfully ✅"
+        let failureMessage = "Upload failed ❌"
+        let outputMessage = (returnCode == ReturnCode.success) ? successMessage : failureMessage
+        messagingService.message(outputMessage, level: .default)
         messagingService.flush()
+        return returnCode
     }
     
     private func printUsage() {
@@ -72,4 +88,5 @@ class Main {
     
 }
 
-Main().main()
+let returnCode = Main().main()
+exit(returnCode.rawValue)
