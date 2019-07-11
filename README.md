@@ -8,6 +8,12 @@
 
 Uploads your apps to TestFlight & App Store.
 
+## Features
+
+- [x] Uploads IPAs to TestFlight and the App Store.
+- [x] Designed to be invoked from an automation server e.g. Jenkins as part of your CI process.
+- [x] Optionally provides the option to notify of upload status via [Slack](https://slack.com/).
+
 For more information on IPA Uploader, take a look at the [keynote presentation](https://github.com/rwbutler/IPAUploader/blob/master/docs/presentations/ipa-uploader.pdf).
 
 # Installation
@@ -27,9 +33,15 @@ The IPA Uploader tool is invoked as follows:
 * `--ipa-path`: The path to the IPA to be uploaded.
 * `--itms-transporter-path`: [Optional] The path to ITMSTransporter for uploading.
 * `--username`: The username of the Apple ID to upload the IPA as.
-* `--password`: The password of the Apple ID to upload the IPA as.
+* `--password`: The app-specific password to use when uploading the IPA (see below).
 * `--slack-url`: [Optional] The hook URL for posting to Slack.
 * `--timeout`: [Optional] A timeout specified in seconds to wait on the upload.
+
+## App-Specific Passwords
+
+An app-specific password is one which is generated and then provided to a third-party app to allow limited access to perform authorized actions using your Apple ID. This prevents your account credentials from being compromised.
+
+In order to generate an app-specific password login at [https://appleid.apple.com](https://appleid.apple.com) and then scroll down to the __Security__ section. Under __App-Specific Passwords__, follow the __Generate Password...__ link.
 
 ## Author
 
