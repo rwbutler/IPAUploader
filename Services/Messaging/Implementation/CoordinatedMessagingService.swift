@@ -8,6 +8,12 @@
 import Foundation
 
 class CoordinatedMessagingService: MessagingService {
+    
+    var emitApplicationName: Bool {
+        didSet {
+            messagingServices.forEach({ $0.emitApplicationName = emitApplicationName })
+        }
+    }
     var messagingLevel: MessagingLevel {
         didSet {
             messagingServices.forEach({ $0.messagingLevel = messagingLevel })
@@ -15,7 +21,9 @@ class CoordinatedMessagingService: MessagingService {
     }
     let messagingServices: [MessagingService]
     
-    init(level: MessagingLevel = .default, options: MessagingOptions = .all, slackHookURL: URL? = nil) {
+    init(emitApplicationName: Bool = false, level: MessagingLevel = .default, options: MessagingOptions = .all,
+         slackHookURL: URL? = nil) {
+        self.emitApplicationName = emitApplicationName
         self.messagingLevel = level
         var services: [MessagingService] = []
         let consoleMessagingService = ConsoleMessagingService(level: level)

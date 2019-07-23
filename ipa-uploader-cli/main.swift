@@ -11,7 +11,7 @@ class Main {
     private let argumentsService = Services.commandLine
     private var messagingService = Services.messaging()
     private let taskService = Services.task
-    private let version: String = "1.0.0"
+    private let version: String = "1.1.0"
     
     func main() -> ReturnCode {
         printVersion()
@@ -38,10 +38,12 @@ class Main {
             return ReturnCode.fileDoesNotExist
         }
         let slackURL = arguments.first(where: { $0.key == .slackURL })?.value as? URL
-        let verboseOutput: Bool = arguments.contains(where: { $0.key == .verbose })
+        let notifyOnlyOnFailure: Bool = arguments.contains(where: { $0.key == .notifyOnlyOnFailure })
+        let verboseOutput: Bool = arguments.contains(where: { $0.key == .verboseOnFailure })
         let messagingLevel: MessagingLevel = verboseOutput ? .verbose : .default
         messagingService = Services.messaging(level: messagingLevel, options: .all, slackHookURL: slackURL)
-        return performUpload(task: transporterTask, verboseOutput: verboseOutput)
+        return performUpload(task: transporterTask, notifyOnlyOnFailure: notifyOnlyOnFailure,
+                             verboseOnFailure: verboseOutput)
     }
     
     private func allFilesExist(fileURLs: [URL]) -> Bool {
@@ -53,9 +55,12 @@ class Main {
         return true
     }
     
-    private func performUpload(task uploadTask: Task, verboseOutput: Bool = false) -> ReturnCode {
+    private func performUpload(task uploadTask: Task, notifyOnlyOnFailure: Bool = false, verboseOnFailure: Bool = false)
+        -> ReturnCode {
         var returnCode: ReturnCode = ReturnCode.itmsTransporterDidNotComplete
-        messagingService.message("Uploading... ☁", level: .default)
+        if !notifyOnlyOnFailure {
+            messagingService.message("Uploading IPA... ☁", level: .default)
+        }
         if let output = taskService.run(task: uploadTask) {
             if output.lowercased().contains("error itms") {
                 returnCode = ReturnCode.uploadFailed
@@ -63,14 +68,15 @@ class Main {
             if output.lowercased().contains("uploaded successfully") {
                 returnCode = ReturnCode.success
             }
-            if verboseOutput {
-                messagingService.message(output, level: .default)
-            }
+            let messagingLevel: MessagingLevel = verboseOnFailure ? .default : .verbose
+            messagingService.message(output, level: messagingLevel)
         }
         let successMessage = "Uploaded succesfully ✅"
         let failureMessage = "Upload failed ❌"
         let outputMessage = (returnCode == ReturnCode.success) ? successMessage : failureMessage
-        messagingService.message(outputMessage, level: .default)
+        if (notifyOnlyOnFailure && returnCode != .success) || !notifyOnlyOnFailure {
+            messagingService.message(outputMessage, level: .default)
+        }
         messagingService.flush()
         return returnCode
     }

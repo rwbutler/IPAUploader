@@ -25,13 +25,12 @@ struct CommandLineArgumentsService: ArgumentsService {
         for i in 1 ..< CommandLine.arguments.count {
             let argumentString = CommandLine.arguments[i]
             if let argumentKey = Argument.Key(rawValue: argumentString) {
-                if argumentKey == .verbose {
-                    result.append(Argument(key: argumentKey, value: nil))
+                if argumentKey.hasValue() {
+                    parsingMode = argumentKey
                 } else {
-                     parsingMode = argumentKey
+                    result.append(Argument(key: argumentKey, value: nil))
                 }
-            } else if let mode = parsingMode,
-                let argumentModel = mode.argument(value: argumentString) {
+            } else if let mode = parsingMode, let argumentModel = mode.argument(value: argumentString) {
                 result.append(argumentModel)
             }
         }

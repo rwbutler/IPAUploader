@@ -9,13 +9,16 @@ import Foundation
 
 enum ArgumentKey: String, RawRepresentable, CustomStringConvertible, CaseIterable, Hashable {
     
+    case emitApplicationName = "--emit-app-name"
     case ipaPath = "--ipa-path"
     case itmsTransporterPath = "--itms-transporter-path"
+    case notifyOnlyOnFailure = "--notify-only-on-failure"
     case username = "--username"
     case password = "--password"
     case slackURL = "--slack-url"
     case timeout = "--timeout"
     case verbose = "--verbose"
+    case verboseOnFailure = "--verbose-on-failure"
     
     init?(rawValue: String) {
         
@@ -53,21 +56,16 @@ enum ArgumentKey: String, RawRepresentable, CustomStringConvertible, CaseIterabl
     func argument(value: String) -> Argument<Any>? {
         let result: Argument<Any>?
         switch self {
-        case .ipaPath:
+        case .ipaPath, .itmsTransporterPath:
             let url = URL(fileURLWithPath: value)
             result = Argument(key: self, value: url as Any)
-        case .itmsTransporterPath:
-            let url = URL(fileURLWithPath: value)
-            result = Argument(key: self, value: url as Any)
-        case .username:
-            result = Argument(key: self, value: value)
-        case .password:
+        case .username, .password:
             result = Argument(key: self, value: value)
         case .slackURL:
             result = argument(urlString: value)
         case .timeout:
             result = argument(doubleString: value)
-        case .verbose:
+        case .emitApplicationName, .notifyOnlyOnFailure, .verbose, .verboseOnFailure:
             result = Argument(key: self, value: nil)
         }
         return result
@@ -75,20 +73,36 @@ enum ArgumentKey: String, RawRepresentable, CustomStringConvertible, CaseIterabl
     
     func extendedDescription() -> String {
         switch self {
+        case .emitApplicationName:
+            return "Emits the application name as part of output."
         case .ipaPath:
-            return "The path to the IPA to be uploaded."
+            return "* [Required] The path to the IPA to be uploaded."
         case .itmsTransporterPath:
-            return "[Optional] The path to ITMSTransporter for uploading."
+            return "The path to ITMSTransporter for uploading."
+        case .notifyOnlyOnFailure:
+            return "Output will only be emitted in the event of a failure."
         case .password:
-            return "The password of the Apple ID to upload the IPA as."
+            return "* [Required] The password of the Apple ID to upload the IPA as."
         case .slackURL:
-            return "[Optional] The hook URL for posting to Slack."
+            return "The hook URL for posting to Slack."
         case .timeout:
-            return "[Optional] A timeout specified in seconds to wait on the upload."
+            return "A timeout specified in seconds to wait on the upload."
         case .username:
-            return "The username of the Apple ID to upload the IPA as."
+            return "* [Required] The username of the Apple ID to upload the IPA as."
         case .verbose:
-             return "[Optional] Whether to emit extended output."
+            return "Whether to emit extended output."
+        case .verboseOnFailure:
+            return "In the event of a failure, verbose output will be emitted to help diagnose the issue."
+        }
+    }
+    
+    /// Whether or not a value is expected to be associated with the specified key.
+    func hasValue() -> Bool {
+        switch self {
+        case .emitApplicationName, .notifyOnlyOnFailure, .verbose, .verboseOnFailure:
+            return false
+        default:
+            return true
         }
     }
     
@@ -108,7 +122,9 @@ enum ArgumentKey: String, RawRepresentable, CustomStringConvertible, CaseIterabl
             return ["-u", "-user"]
         case .verbose:
             return ["-v"]
+        case .emitApplicationName, .notifyOnlyOnFailure, .verboseOnFailure:
+            return []
         }
     }
-
+    
 }

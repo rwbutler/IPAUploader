@@ -9,6 +9,9 @@ import Foundation
 
 protocol MessagingService: class {
     
+    /// Determines whether or not the name of the application is shown in output.
+    var emitApplicationName: Bool { get set }
+    
     /// Sets the log level at which output will be emitted.
     var messagingLevel: MessagingLevel { get set }
     

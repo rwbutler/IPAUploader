@@ -8,9 +8,11 @@
 import Foundation
 
 class ConsoleMessagingService: MessagingService {
+    var emitApplicationName: Bool
     var messagingLevel: MessagingLevel
     
-    init(level: MessagingLevel = .default) {
+    init(emitApplicationName: Bool = false, level: MessagingLevel = .default) {
+        self.emitApplicationName = emitApplicationName
         self.messagingLevel = level
     }
     
@@ -18,7 +20,8 @@ class ConsoleMessagingService: MessagingService {
     
     func message(_ message: String, level: MessagingLevel = .default, completion: (() -> Void)?) {
         if UInt8(level.rawValue) <= UInt8(messagingLevel.rawValue) {
-            print("\(message)")
+            let output = emitApplicationName ? "\(applicationName()): \(message)" : message
+            print(output)
             completion?()
         }
     }

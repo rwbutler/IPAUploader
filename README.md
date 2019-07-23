@@ -31,12 +31,19 @@ brew install rwbutler/tools/ipa-uploader
 The IPA Uploader tool is invoked as follows:
 
 * `--ipa-path`: The path to the IPA to be uploaded.
-* `--itms-transporter-path`: [Optional] The path to ITMSTransporter for uploading.
+
 * `--username`: The username of the Apple ID to upload the IPA as.
 * `--password`: The app-specific password to use when uploading the IPA (see below).
-* `--slack-url`: [Optional] The hook URL for posting to Slack.
-* `--timeout`: [Optional] A timeout specified in seconds to wait on the upload.
-* `--verbose`: [Optional] Emits more detailed output.
+
+The following optional parameters may also be specified:
+
+* `--itms-transporter-path`: The path to ITMSTransporter for uploading.
+* `--emit-app-name`: Emits the application name as part of output.
+* `--notify-only-on-failure`: Output will only be emitted in the event of a failure.
+* `--slack-url`: The hook URL for posting to Slack.
+* `--timeout`: A timeout specified in seconds to wait on the upload.
+* `--verbose`: Emits more detailed output.
+* `--verbose-on-failure`: In the event of a failure, verbose output will be emitted to help diagnose the issue.
 
 ## App-Specific Passwords
 

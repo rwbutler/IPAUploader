@@ -13,14 +13,17 @@ class SlackMessagingService: MessagingService {
     let consoleMessagingService: ConsoleMessagingService
     let dispatchGroup = DispatchGroup()
     let hookURL: URL
+    var emitApplicationName: Bool
     private var flushed: Bool = false
     var messagingLevel: MessagingLevel
     var simpleBuffer: [MessageWithCompletion] = []
     var timer: DispatchSourceTimer?
     let queue = DispatchQueue(label: "com.example.repeating.queue", qos: .background)
     
-    init(consoleMessagingService: ConsoleMessagingService, hookURL: URL, level: MessagingLevel = .default) {
+    init(consoleMessagingService: ConsoleMessagingService, emitApplicationName: Bool = false, hookURL: URL,
+         level: MessagingLevel = .default) {
         self.consoleMessagingService = consoleMessagingService
+        self.emitApplicationName = emitApplicationName
         self.hookURL = hookURL
         self.messagingLevel = level
     }
@@ -77,9 +80,10 @@ private extension SlackMessagingService {
     }
     
     func formattedMessage(messages: [String]) -> String {
-        let message = messages.joined(separator: "\n")
+        var message = messages.joined(separator: "\n")
             .replacingOccurrences(of: "\"", with: "") // Strip double quotes
-        return "\(applicationName()): \(message)\n"
+        message = emitApplicationName ? "\(applicationName()): \(message)\n" : "\(message)\n"
+        return message
     }
     
     func bufferEmpty() -> Bool {
