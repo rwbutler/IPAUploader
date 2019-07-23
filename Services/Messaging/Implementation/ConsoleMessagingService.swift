@@ -19,10 +19,12 @@ class ConsoleMessagingService: MessagingService {
     func flush() {}
     
     func message(_ message: String, level: MessagingLevel = .default, completion: (() -> Void)?) {
-        if UInt8(level.rawValue) <= UInt8(messagingLevel.rawValue) {
-            let output = emitApplicationName ? "\(applicationName()): \(message)" : message
-            print(output)
+        guard UInt8(level.rawValue) <= UInt8(messagingLevel.rawValue) else {
             completion?()
+            return
         }
+        let output = emitApplicationName ? "\(applicationName()): \(message)" : message
+        print(output)
+        completion?()
     }
 }

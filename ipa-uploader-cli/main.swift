@@ -11,7 +11,7 @@ class Main {
     private let argumentsService = Services.commandLine
     private var messagingService = Services.messaging()
     private let taskService = Services.task
-    private let version: String = "1.1.0"
+    private let version: String = "1.1.1"
     
     func main() -> ReturnCode {
         printVersion()
@@ -39,11 +39,12 @@ class Main {
         }
         let slackURL = arguments.first(where: { $0.key == .slackURL })?.value as? URL
         let notifyOnlyOnFailure: Bool = arguments.contains(where: { $0.key == .notifyOnlyOnFailure })
-        let verboseOutput: Bool = arguments.contains(where: { $0.key == .verboseOnFailure })
+        let verboseOnFailure: Bool = arguments.contains(where: { $0.key == .verboseOnFailure })
+        let verboseOutput: Bool = arguments.contains(where: { $0.key == .verbose })
         let messagingLevel: MessagingLevel = verboseOutput ? .verbose : .default
         messagingService = Services.messaging(level: messagingLevel, options: .all, slackHookURL: slackURL)
         return performUpload(task: transporterTask, notifyOnlyOnFailure: notifyOnlyOnFailure,
-                             verboseOnFailure: verboseOutput)
+                             verboseOnFailure: verboseOnFailure)
     }
     
     private func allFilesExist(fileURLs: [URL]) -> Bool {
@@ -57,28 +58,36 @@ class Main {
     
     private func performUpload(task uploadTask: Task, notifyOnlyOnFailure: Bool = false, verboseOnFailure: Bool = false)
         -> ReturnCode {
-        var returnCode: ReturnCode = ReturnCode.itmsTransporterDidNotComplete
-        if !notifyOnlyOnFailure {
-            messagingService.message("Uploading IPA... ☁", level: .default)
-        }
-        if let output = taskService.run(task: uploadTask) {
-            if output.lowercased().contains("error itms") {
-                returnCode = ReturnCode.uploadFailed
+            var returnCode: ReturnCode = ReturnCode.itmsTransporterDidNotComplete
+            if !notifyOnlyOnFailure {
+                messagingService.message("Uploading IPA... ☁", level: .default)
             }
-            if output.lowercased().contains("uploaded successfully") {
-                returnCode = ReturnCode.success
+            if let output = taskService.run(task: uploadTask) {
+                var outputEmitted = false
+                if output.lowercased().contains("error itms") {
+                    returnCode = ReturnCode.uploadFailed
+                    if verboseOnFailure { // Output if even if verbose not set where a failure has occurred.
+                        messagingService.message(output, level: .default)
+                        outputEmitted = true
+                    }
+                }
+                if output.lowercased().contains("uploaded successfully") {
+                    returnCode = ReturnCode.success
+                }
+                if !outputEmitted { // Ensures we don't output this twice.
+                    messagingService.message(output, level: .verbose)
+                }
             }
-            let messagingLevel: MessagingLevel = verboseOnFailure ? .default : .verbose
-            messagingService.message(output, level: messagingLevel)
-        }
-        let successMessage = "Uploaded succesfully ✅"
-        let failureMessage = "Upload failed ❌"
-        let outputMessage = (returnCode == ReturnCode.success) ? successMessage : failureMessage
-        if (notifyOnlyOnFailure && returnCode != .success) || !notifyOnlyOnFailure {
-            messagingService.message(outputMessage, level: .default)
-        }
-        messagingService.flush()
-        return returnCode
+            let successMessage = "Uploaded succesfully ✅"
+            let failureMessage = "Upload failed ❌"
+            let outputMessage = (returnCode == ReturnCode.success) ? successMessage : failureMessage
+            
+            // Where `notifyOnlyOnFailure` set we should emit the upload result only where a failure occurs.
+            if (notifyOnlyOnFailure && returnCode != .success) || !notifyOnlyOnFailure {
+                messagingService.message(outputMessage, level: .default)
+            }
+            messagingService.flush()
+            return returnCode
     }
     
     private func printUsage() {

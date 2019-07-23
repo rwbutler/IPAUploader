@@ -44,11 +44,15 @@ class CoordinatedMessagingService: MessagingService {
     }
     
     func message(_ message: String, level: MessagingLevel, completion: (() -> Void)?) {
+        let dispatchGroup: DispatchGroup = DispatchGroup()
         messagingServices.forEach({ messagingService in
+            dispatchGroup.enter()
             messagingService.message(message, level: level) {
-                completion?()
+                dispatchGroup.leave()
             }
         })
+        dispatchGroup.wait()
+        completion?()
     }
     
 }

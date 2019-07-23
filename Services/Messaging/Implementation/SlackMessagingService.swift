@@ -34,23 +34,26 @@ class SlackMessagingService: MessagingService {
     }
     
     func message(_ message: String, level: MessagingLevel = .default, completion: (() -> Void)?) {
-        if UInt8(level.rawValue) <= UInt8(messagingLevel.rawValue) {
-            if timer == nil {
-                timer = configureTimer()
-                timer?.resume()
-            }
-            buffer(message: message, completion: completion)
+        guard UInt8(level.rawValue) <= UInt8(messagingLevel.rawValue) else {
+            completion?()
+            return
         }
+        if timer == nil {
+            timer = configureTimer()
+            timer?.resume()
+        }
+        buffer(message: message, completion: completion)
     }
     
     /// Sends all unsent messages
     func flush() {
-        let group = dispatchGroup
-        group.enter()
-        sendBufferedMessage {
-            group.leave()
+        let semaphore = DispatchSemaphore(value: 0)
+        DispatchQueue.global(qos: .utility).async {
+            self.sendBufferedMessage {
+                semaphore.signal()
+            }
         }
-        group.wait()
+        _ = semaphore.wait(wallTimeout: .distantFuture)
     }
     
 }
@@ -61,7 +64,7 @@ private extension SlackMessagingService {
         simpleBuffer.append((message, completion))
     }
     
-   func cancelTimer() {
+    func cancelTimer() {
         timer?.cancel()
         timer = nil
     }
@@ -154,5 +157,5 @@ private extension SlackMessagingService {
         request.httpBody = "payload={\"text\": \"\(message)\"}".data(using: .utf8)
         return request
     }
-
+    
 }
