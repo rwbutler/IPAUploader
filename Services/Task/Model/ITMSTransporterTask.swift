@@ -25,9 +25,9 @@ struct ITMSTransporterTask: Task {
     }
     
     init?(arguments: [Argument<Any>]) {
-        let itmsTransporterPath = arguments.first(where: { $0.key == .username })?.value as? URL
+        let itmsTransporterPath = arguments.first(where: { $0.key == .itmsTransporterPath })?.value as? URL
             ?? ITMSTransporterTask.defaultURL
-        guard let ipaPath = arguments.first(where: { $0.key == ArgumentKey.ipaPath })?.value as? URL,
+        guard let ipaPath = arguments.first(where: { $0.key == .ipaPath })?.value as? URL,
             let username = arguments.first(where: { $0.key == .username })?.value as? String,
             let password = arguments.first(where: { $0.key == .password })?.value as? String else {
             return nil
