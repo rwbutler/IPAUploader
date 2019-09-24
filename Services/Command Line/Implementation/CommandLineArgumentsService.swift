@@ -12,9 +12,7 @@ struct CommandLineArgumentsService: ArgumentsService {
     func argumentsValid(_ arguments: [Argument<Any>]) -> Bool {
         let argumentKeys = arguments.map({ $0.key })
         let requiredArguments: [Argument.Key] = [.ipaPath, .username, .password]
-        let isValid = requiredArguments.reduce(true, { (result, nextArgument)  in
-            return result && argumentKeys.contains(where: { nextArgument == $0 })
-        })
+        let isValid = requiredArguments.allSatisfy { argumentKeys.contains($0) }
         return isValid
     }
     

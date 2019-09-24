@@ -8,17 +8,21 @@
 import Foundation
 
 class Main {
+    
     private let argumentsService = Services.commandLine
     private var messagingService = Services.messaging()
     private let taskService = Services.task
-    private let version: String = "1.1.1"
+    private let version: String = "1.1.3"
+    // swiftlint:disable:next line_length
+    private let xcode10Path = "/Applications/Xcode.app/Contents/Applications/Application Loader.app/Contents/itms/bin/iTMSTransporter"
+    private let xcode11Path = "/Applications/Xcode.app/Contents/Developer/usr/bin/iTMSTransporter"
     
-    func main() -> ReturnCode {
+    func main() throws -> ReturnCode {
         printVersion()
         let arguments = argumentsService.processArguments(CommandLine.arguments)
-        
+        let xcode11URL = URL(fileURLWithPath: xcode11Path)
         guard argumentsService.argumentsValid(arguments),
-            let transporterTask = ITMSTransporterTask(arguments: arguments) else {
+            var transporterTask = ITMSTransporterTask(arguments: arguments, itmsTransporterURL: xcode11URL) else {
                 printUsage()
                 return ReturnCode.invalidArguments
         }
@@ -43,8 +47,19 @@ class Main {
         let verboseOutput: Bool = arguments.contains(where: { $0.key == .verbose })
         let messagingLevel: MessagingLevel = verboseOutput ? .verbose : .default
         messagingService = Services.messaging(level: messagingLevel, options: .all, slackHookURL: slackURL)
-        return performUpload(task: transporterTask, notifyOnlyOnFailure: notifyOnlyOnFailure,
-                             verboseOnFailure: verboseOnFailure)
+        if !notifyOnlyOnFailure {
+            messagingService.message("Uploading IPA... ☁", level: .default)
+        }
+        do {
+            // Attempt upload using path to iTMSTransporter with Xcode 11.
+            return try performUpload(task: transporterTask, notifyOnlyOnFailure: notifyOnlyOnFailure,
+                                     verboseOnFailure: verboseOnFailure)
+        } catch {
+            // Fallback - attempt upload using path to iTMSTransporter with Xcode 10 or below.
+            transporterTask.processURL = URL(fileURLWithPath: xcode10Path)
+            return try performUpload(task: transporterTask, notifyOnlyOnFailure: notifyOnlyOnFailure,
+                                     verboseOnFailure: verboseOnFailure)
+        }
     }
     
     private func allFilesExist(fileURLs: [URL]) -> Bool {
@@ -57,27 +72,19 @@ class Main {
     }
     
     private func performUpload(task uploadTask: Task, notifyOnlyOnFailure: Bool = false, verboseOnFailure: Bool = false)
-        -> ReturnCode {
+        throws -> ReturnCode {
             var returnCode: ReturnCode = ReturnCode.itmsTransporterDidNotComplete
-            if !notifyOnlyOnFailure {
-                messagingService.message("Uploading IPA... ☁", level: .default)
-            }
-            if let output = taskService.run(task: uploadTask) {
-                var outputEmitted = false
-                if output.lowercased().contains("error itms") {
-                    returnCode = ReturnCode.uploadFailed
-                    if verboseOnFailure { // Output if even if verbose not set where a failure has occurred.
-                        messagingService.message(output, level: .default)
-                        outputEmitted = true
-                    }
-                }
-                if output.lowercased().contains("uploaded successfully") {
-                    returnCode = ReturnCode.success
-                }
-                if !outputEmitted { // Ensures we don't output this twice.
-                    messagingService.message(output, level: .verbose)
+            let output = try taskService.run(task: uploadTask)
+            if output.lowercased().contains("error itms") {
+                returnCode = ReturnCode.uploadFailed
+                if verboseOnFailure { // Output if even if verbose not set where a failure has occurred.
+                    messagingService.message(output, level: .default)
                 }
             }
+            if output.lowercased().contains("uploaded successfully") {
+                returnCode = ReturnCode.success
+            }
+            messagingService.message(output, level: .verbose)
             let successMessage = "Uploaded succesfully ✅"
             let failureMessage = "Upload failed ❌"
             let outputMessage = (returnCode == ReturnCode.success) ? successMessage : failureMessage
@@ -103,5 +110,9 @@ class Main {
     
 }
 
-let returnCode = Main().main()
-exit(returnCode.rawValue)
+do {
+    let returnCode = try Main().main()
+    exit(returnCode.rawValue)
+} catch _ {
+    exit(ReturnCode.itmsTransporterDidNotComplete.rawValue)
+}

@@ -24,7 +24,7 @@ struct DefaultTaskService: TaskService {
     }
     
     /// Executes the specified task and return the output, if any
-    func run(task: Task) -> String? {
+    func run(task: Task) throws -> String {
         let dispatchGroup = DispatchGroup()
         let pipe = Pipe()
         let pipeReader = pipe.fileHandleForReading
@@ -34,20 +34,16 @@ struct DefaultTaskService: TaskService {
         process.terminationHandler = { (process) in
             dispatchGroup.leave()
         }
-        do {
-            dispatchGroup.enter()
-            if let timeout = task.timeoutInSeconds {
-                startTimeoutTimer(timeoutInSeconds: timeout, process: process)
-            }
-            try process.run()
-            dispatchGroup.wait()
-            let processData = pipeReader.readDataToEndOfFile()
-            let processOutput = String(data: processData, encoding: .utf8)
-            pipeReader.closeFile()
-            return processOutput
-        } catch _ {
-            return nil
+        dispatchGroup.enter()
+        if let timeout = task.timeoutInSeconds {
+            startTimeoutTimer(timeoutInSeconds: timeout, process: process)
         }
+        try process.run()
+        dispatchGroup.wait()
+        let processData = pipeReader.readDataToEndOfFile()
+        let processOutput = String(data: processData, encoding: .utf8) ?? ""
+        pipeReader.closeFile()
+        return processOutput
     }
     
     private func startTimeoutTimer(timeoutInSeconds: Double, process: Process) {

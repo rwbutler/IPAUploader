@@ -8,5 +8,5 @@
 import Foundation
 
 protocol TaskService {
-    func run(task: Task) -> String?
+    func run(task: Task) throws -> String
 }
